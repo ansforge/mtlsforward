@@ -2,7 +2,7 @@ displayName: mTLS forward
 type: middleware
 #iconPath: .assets/icon.png
 
-import: github.com/pvliesdonk/mtlsforward
+import: github.com/ansforge/mtlsforward
 
 summary: 'Forward mTLS client certificate as SSL_CLIENT_CERT and CERT_CHAIN_# headers for use with Wildfly/Undertow services like Keycloak.'
 
