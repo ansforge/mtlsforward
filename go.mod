@@ -1,3 +1,3 @@
-module github.com/pvliesdonk/mtlsforward
+module github.com/ansforge/mtlsforward
 
 go 1.19
