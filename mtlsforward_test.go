@@ -9,7 +9,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/pvliesdonk/mtlsforward"
+	"github.com/ansforge/mtlsforward"
 )
 
 func TestDemo(t *testing.T) {
