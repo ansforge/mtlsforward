@@ -67,6 +67,8 @@ func (m mTLSForward) encodeCertificate(certBytes *[]byte) string {
 
 	if m.encodePem {
 		encodedCert = string(pem.EncodeToMemory(&pem.Block{Type: "CERTIFICATE", Bytes: *certBytes}))
+		// encodage du certificat en base64 
+		encodedCert = base64.StdEncoding.EncodeToString([]byte(encodedCert))
 	} else {
 		encodedCert = base64.StdEncoding.EncodeToString(*certBytes)
 	}
