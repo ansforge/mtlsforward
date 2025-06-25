@@ -70,7 +70,7 @@ func (m mTLSForward) encodeCertificate(certBytes *[]byte) string {
 	} else {
 		encodedCert = base64.StdEncoding.EncodeToString(*certBytes)
                 encodedCert = "-----BEGIN CERTIFICATE-----" + encodedCert + "-----END CERTIFICATE-----"
-		//encodedCert = base64.StdEncoding.EncodeToString([]byte(encodedCert))
+		encodedCert = base64.StdEncoding.EncodeToString([]byte(encodedCert))
 	}
 
 	if m.encodeURL {
