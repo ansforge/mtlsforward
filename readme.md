@@ -1,3 +1,13 @@
+fork du plgugin mtlsforward.
+Fork pour implémenter une solution de contournement non pérenne à une problématique de bascule d'un point de terminaison mTLS avec une modification de format du certificat client mis dans l'entête http Ssl_client_cert.
+Par défaut dans Traefik on récupère le certificat client au format PEM mais sans les délimiteurs 'BEGIN CERTIFICATE' et 'END CERTIFICATE' et sans les sauts de ligne.
+Dans le WAF qui faisait notre terminaison mTLS précédement, le certificat client était mis dans l'entête Ssl_client_cert, mais le certificat au format PEM (en entier avec les délimiteurs et les sauts de lignes), était encodé en base 64. L'application cliente qui utilise cette entête, fait juste un decode base64 et récupère le certificat sans rien avoir à modifier. Nous devons donc modifier notre application cliente, pour s'adapter à Traefik. Mais en attendant, pour des raisons de délais,  nous avons patché ce plugin pour avoir le même format.
+Nous avons également dû dans ce plugin désactiver le set des entêtes avec la chaine de certification car cela provoquait une erreur http 431.
+
+
+
+
+
 This repository contains a Traefik plugin to forward a mTLS client             
 certificate via HTTP Headers
                                                            
