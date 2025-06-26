@@ -67,7 +67,7 @@ func (m mTLSForward) encodeCertificate(certBytes *[]byte) string {
 
 	if m.encodePem {
 		encodedCert = string(pem.EncodeToMemory(&pem.Block{Type: "CERTIFICATE", Bytes: *certBytes}))
-		// encodage en base 64 du certificat
+		// encodage en base 64 du certificat PEM
 		 encodedCert = base64.StdEncoding.EncodeToString([]byte(encodedCert))
 	} else {
 		encodedCert = base64.StdEncoding.EncodeToString(*certBytes)
@@ -94,7 +94,8 @@ func (m mTLSForward) ServeHTTP(writer http.ResponseWriter, request *http.Request
 			} else {
 				// part of chain
 				headerName := m.headers["sslCertChainPrefix"] + "_" + strconv.Itoa(i-1)
-				request.Header.Set(headerName, certString)
+				// on désactive les entête contenant la chaine de certificats pour eviter l'erreur HTTP 431
+				//request.Header.Set(headerName, certString)
 			}
 		}
 	}
